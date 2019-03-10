@@ -1,0 +1,82 @@
+---
+title: The Limits of Capital
+date: 2018-12-14
+author: The handsome/beautiful author
+---
+
+- A code in list
+        //:go
+        func main() {
+            key := brute(os.Args[1], os.Args[2], 5)
+
+            fmt.Printf("Key is %s\n", key)
+        }
+- Another item
+    - Nested item
+- The last item
+    - Nested item
+        - Double Nested item
+            - Triple Nested item
+        - Well, god
+- Yeah, this is really the last item
+
+A normal link @[https://www.baidu.com],
+a very long link @[https://stackoverflow.com/questions/40821855/do-go-switch-cases-fallthrough-or-not].
+, and a ftp link @[ftp://ftp.example.com].
+
+You say, you want to insert an image, its ok: @[./book-reading.jpg]
+
+The title looks like markdown.
+
+# Head 1
+
+## Head 2
+
+### Head 3
+
+And the highlight in line is the same as markdown.
+
+This is inline `highlight` and the following is independent code block
+hightlight:
+
+    #include <stdio.h>
+    #include <string.h>
+
+    int main(int argc, char **argv)
+    {
+        char str[1024];
+
+        strcpy(str, argv[1]);
+        printf("%s\n", str);
+
+        return 0;
+    }
+
+THE LIMITS TO CAPPITAL
+
+author: DAVID HARVEY
+date: 2019-03-10(note)
+
+
+资本的限度
+
+    马克思主义政治经济学中最有争议的问题至今仍然是如何理解危机的的形成。不仅
+在这一点上有多个不同的思想流派，并且解释上的差别长久以来都为不同的政治策略提供
+了支持。
+    马克思坚持认为，我们应该通过考察资本主义的内在动态来理解危机。这导致来他
+淡化了环境约束或人口约束的根本地位--在许多人眼中，这是错误的。在马克思时代，
+这些约束的主要表达方式是李嘉图式的农业回报下降或马尔萨斯式的人口动态。许多左翼
+人士现在都认为，正是环境危机界定了我们这个时代的危机，我们的政治活动也应该做成
+相应的变革。
+    当我们倘若拒绝面对资本主义的内在矛盾，拒绝把它作为我们的问题的关键，就会错失一
+些重要的东西。只有转向危机理论，才能弄明白我们在政治上要奉行怎样的长期理论。马
+克思的危机理论有三个主要的思想流派。第一个流派通常被描述成为“利润缩减”理论，它
+认为劳工组织和劳工的稀缺会驱使资本积累的速度下降，以至于使资本家阶级，从而使
+整个资本主义体系面临危机。第二个流派姜有效的需求缺乏或“消费不足”看作问题的
+关键，因为资本家会不断投资，而工人所消费的价值按其定义就少于他们生产的价值。马
+尔萨斯把对外贸易和“非生产阶级”的消费视为对有效需求的解答。卢森堡则认为帝国主
+义对非资本社会有组织的劫掠是唯一的选择。关于消费不足的理论在资产阶级那边对应
+凯恩斯主义理论。第三个流派关于利润率下降的理论则立足于一种观点：资本家争相寻求
+可以节省劳动的创新，结果讲活劳动（马克思主义中一切价值和剩余价值的源头）从生产
+中移走了。如果其他事情保持不变，这就会产生利润率下降的持久趋势。
+    更加深层次是过度积累的倾向。
