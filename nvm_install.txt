@@ -1,0 +1,23 @@
+---
+title: Mac OSX 安装nvm(node.js版本管理器)
+date: 2019-06-05
+author: sixpence
+---
+
+
+You say, you want to insert an image, its ok: @[./book-reading.jpg]
+#1.打开github官网https://github.com/，输入nvm搜索,选择creationix／nvm，打开
+
+#2.找到Install script，复制
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+
+#3. 打开终端，把第2步复制的添加sudo权限，粘贴到终端里
+
+#4.此时nvm虽然安装好了，但仍然不能用，因为还没有添加环境变量，nvm安装好以后会提
+示添加环境变量到，在第三步提示中，添加一下的代码：
+hightlight:
+
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
