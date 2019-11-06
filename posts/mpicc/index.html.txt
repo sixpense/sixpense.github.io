@@ -1,0 +1,9 @@
+apt-get install mpich  # 安装
+mpicc -g -Wall -o mpi quad_mpi.c  # 编译 quad_mpi.c文件 生成mpi
+
+c++文件
+mpic++ -fopenmp mandelbrot.cpp -o test_mpi 
+
+mpiexec -n 4 ./mpi  # 用4个CPU执行mpi 程序
+
+mpirun -n 4 ./mpi
