@@ -1,0 +1,255 @@
+---
+-Title: vim使用帮助
+-Date: 2020-03-13
+-Author: sixpense
+---
+
+#vim指随意动,移动如飞
+
+##vim模式简介
+vi/vim 共分为三种模式，分别是命令模式(Command mode)，输入模式(Insert mode)和底
+线命令模式(Last line mode)。 这三种模式的作用分别是：
+
+(1). 命令模式(Command mode)(NORMAL)
+- i 切换到输入模式,以输入字符.
+- x 删除当前光标所在的字符.
+- : 切换到底线命令模式,以在最底一行输入命令.
+
+(2). 输入模式(Insert mode)
+- ESC 退回命令模式.
+- DELETE 删除当前光标所在字符.
+- RETURN 回车换行.
+
+(3). 底线命令模式(Last line mode)
+底线命令模式中,基本常在前面加冒号(:)
+- :w 保存文件
+- :q 退出当前编写文件
+- ESC 退回命令模式
+
+注:
+文档中<Control - B>会写成<C-B>
+默认底线命令模式都需要回车<return>,例如:wq需要执行:wq<return>
+
+一 基本操作
+
+1. 插入
+- i 在光标后插入
+- o 在当前行后插入一个新行.
+- O 在当前行前插入一个新行.
+- cw 删除当前光标位置后到单词结尾的字符.
+
+2. 简单移动光标
+- 0 数字0,到行首.
+- ^ 当前行非空字符处.
+- $ 行尾.
+- g_ 当前行最后一个非空字符处.
+- /pattern 搜索pattern字符串(按n到下一个).
+
+- fa 下一个为a到字符处.
+- Fa 与f的方向相反.
+- 3fa 当前光标后第三个出现的a.
+
+- t( 到括号前到第一个字符((可修改为其他字符).
+- T 与t的方向相反.
+- dt" 删除所以内容,直至遇到".
+
+
+- NG 到第N行(:N也是同样效果).
+- gg 到第一行.
+- G 到最后一行.
+- :N 到第N行首.
+
+- w 下一单词的开头.
+- e 下一单词到结尾.
+
+- % 匹配括号移动(将光标移动到括号上).
+- */# 匹配光标当前所在单词,移动光标到上一个或者下一个.
+
+
+3. 粘贴复制
+- p/P p在当前位置之后粘贴,P在当前位置之前粘贴.
+- yy 拷贝当前行.
+- 0y$ 从行首拷贝到行尾
+- ye 从当前光标拷贝到本单词最后一个字符
+
+- u (undo)撤销操作.
+- <C-r> (redo)反撤销.
+- dd 删除当前行.
+- "+y 复制到系统剪切板.
+- "+p 从系统剪切板拷贝.
+
+4. 打开保存退出
+- :e <file path> 打开一个文件.
+- :sp <file path> 创建一个分屏并打开一个文件(:split).
+- :vsp <file path> 创建一个垂直分屏并打开一个文件(:vsplit).
+- :x/ :wq/ ZZ 保存并退出.
+- :q! 强制退出且不保存.
+- :bn/:bp 同时打开多文件,打开上一个或下一个文件(:n也可打开下一个文件).
+
+- <C-W><dir> dir就是方向(hjkl), 用来切换分屏.
+- <C-W>+/<C-W>- 增大或者缩小窗口.
+- <C-W>_ 最大化当前窗口.
+- <C-W>| 最大化垂直窗口.
+
+5. 快捷操作
+- . 重复上次命令
+- N<Command> 重复某个命令多次.
+    - 2dd 删除两行
+    - 3p 粘贴3次
+
+查找
+- * 往后查找当前单词.
+- # 往前查找当前单词.
+
+6. 区域选择
+命令格式: <action>a<object>/<action>i<object>
+# <action>可以是任何命令,如:y,d,v.
+# <object> w:单词,W:以空格为分隔到单词. s:句子. p:段落. 或者),],},',".
+字符串(map (+) ("foo")),光标位于第一个o.
+- vi" → 会选择 foo.
+- va" → 会选择 "foo".
+- vi) → 会选择 "foo".
+- va) → 会选择("foo").
+- v2i) → 会选择 map (+) ("foo")
+- v2a) → 会选择 (map (+) ("foo"))
+
+7. 块操作
+<C-V>进入可视块(V-BLOCK)模式.
+- J 将所选的行连接为一行.
+- </> 左右缩进.
+- = 自动给缩进.
+
+多行注释和插入
+(1)ESC进入命令行模式,0光标跳转到行头.
+(2)<C-V>进入可视块模式.
+(3)选择需要插入的行(j/k).
+(4)输入大写"I",输入需要插入的内容(注释为"#").
+(5)按ESC使所有到行生效.
+
+反注释和多行删除
+(1)<C-V>进入可视块选择模式.
+(2)选择要删除的行(j/k),要删除的字符(h/l).
+(3)按"d"删除
+
+7. 自动补全
+在Insert模式下, 按<C-p>或<C-n>自动补全.
+
+8. 编辑远程文件
+Vim 内置的插件 netrw 支持对远程文件的编辑。它的原理是将远程的文件通过 scp 复制到本地的临时文件中，再用这个文件打开一个缓冲区，然后在保存时再将文件复制回远程位置。以下命令列举在本地打开 SSH 远程服务器上文件的方式：
+:e scp://user@remotehost/.vimrc
+
+:e scp://user@remotehost/~/.vimrc
+
+:e scp://user@remotehost//etc/passwd
+
+也可以配置 ~/.ssh/config 文件，使得命令更加简单，如 ~/.ssh/config 存在如下配置：
+
+Host test
+    HostName test.site.com
+    Port 23456
+    User test
+
+那么编辑文件的命令就可以变得很简单：
+:e scp://test/.vimrc
+
+二 高级设置
+
+
+9. 文件类型识别
+Vim可针对特定的文件，加载指定插件。以此来实现文件类型的特殊配置以及语法高亮。
+
+首先要在 vimrc 中通过 filetype on 开启文件类型识别，Vim 会在载入时做如下工作：
+
+执行$RUNTIMEPATH/filetype.vim，尝试得到 filetype。
+如果没有得到 filetype，继续执行 $RUNTIMEPATH/scripts.vim
+比如我们可以在 ~/.vim/filetype.vim 中进行 filetype：
+" 在读取和创建 *.cpp 时设置 filetype 为 cpp"
+au BufRead,BufNewFile *.cpp setfiletype cpp
+
+调试时我们可以手动设置 :set filetype=cpp。 RUNTIMEPATH 变量可通过 :set rtp 打
+印出来. 详细参考详见:help filetype.
+
+10. 终端
+vim 8.1 引入了终端功能. 即能在 vim 中划分出一个命令行窗口, 十分方便运行命令.
+
+将当期窗口划分为两个窗口, above 表示终端在上面的窗口, below 表示终端在下面的窗口.
+- :above term
+- :below term
+
+将当期终端窗口放在最上面或者最下面.
+- :bot term
+- :top term
+
+打开一个终端后, 默认是插入模式, 可以输入命令并执行.
+
+如果要进入 normal 模式, 输入 <c-\> <c-n>.
+
+要进入插入模式, 直接按下 i 即可.
+
+打开光标的文件:
+假如说你有一个文件demo.txt, 把光标放在当前字符串demo.txt中, 按下gf在当前窗口打
+开该文件.
+当你想跳回原文件时, 输入<C-^>或者:b 
+
+
+11. 键盘映射
+Vim支持定义键盘映射来完成快捷键的功能，也就是将特定的按键映射为一系列按键与函数的序列。
+
+例如将 F7 映射为编译当前 java 文件：
+
+map <F7> <Esc>:!javac %<<CR>
+
+map模式	描述
+ n  	普通
+ v  	可视和选择
+ s  	选择
+ x  	可视
+ o  	操作符等待
+ !  	插入和命令行
+ i  	插入
+ l  	插入、命令行和 Lang-Arg 模式的 “:lmap” 映射
+ c  	命令行
+
+: 为进入Ex模式，! 指定下面的命令在vim外执行，% 为当前文件名，%< 为不带扩展名的
+当前文件名.
+
+此外还可添加nore指定非递归方式(取消传递性). 例如 inoremap 为插入模式下工作
+的map,并且它的值不会被递归映射.
+
+10. VIM函数
+现在我们可以自定义快捷键了，如果希望在键盘映射中执行更复杂的功能，我们需要定义Vim函数。
+
+函数名必须以大写字母开始
+函数可以有返回值：return something
+函数可以有范围前缀。定义：function s:Save()，调用：call s:Save()
+下面是函数调用的例子，按键F8时，进入拷贝模式（取消行号，鼠标进入visual模式）
+
+" key mapping
+map <F8> <Esc>:call ToggleCopy()<CR>
+
+" global variable
+let g:copymode=0
+
+" function
+function ToggleCopy()
+    if g:copymode
+        set number
+        set mouse=a
+    else
+        set nonumber
+        set mouse=v
+    endif
+    let g:copymode=!g:copymode
+endfunction
+
+
+插件:
+" 注释插件
+Plug 'scrooloose/nerdcommenter'  
+\cc
+\cu
+
+
+
+VIM官方教程:help tutor.
+

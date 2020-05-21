@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link href="../pigger/css/prism.css" rel="stylesheet" />
+  <link href="../pigger/css/normalize.css" rel="stylesheet" />
+  <link href="../pigger/css/pigger.css" rel="stylesheet" />
+  </head>
+  <body>
+  <div style="padding:1% 5% 1% 5%">
+    <section style="padding-top: 20px; padding-bottom: 5px; color: #fff; text-align: center; background-image: linear-gradient(120deg, #224a73, #0d4027);">
+      <div id = "headtitle">  </div>
+      <div id = "headinfo"> by  </div>
+      <div id = "lastupdate"> Publish →  Update → 2020-05-21</div>
+    </section>
+    
+<h1>vim指随意动,移动如飞</h1>
+<h2>vim模式简介
+vi/vim 共分为三种模式，分别是命令模式(Command mode)，输入模式(Insert mode)和底
+线命令模式(Last line mode)。 这三种模式的作用分别是：</h2>
+<p>(1). 命令模式(Command mode)(NORMAL)- i 切换到输入模式,以输入字符.- x 删除当前光标所在的字符.- : 切换到底线命令模式,以在最底一行输入命令.</p>
+<p>(2). 输入模式(Insert mode)- ESC 退回命令模式.- DELETE 删除当前光标所在字符.- RETURN 回车换行.</p>
+<p>(3). 底线命令模式(Last line mode)底线命令模式中,基本常在前面加冒号(:)- :w 保存文件- :q 退出当前编写文件- ESC 退回命令模式</p>
+<p>注:文档中&lt;Control - B&gt;会写成&lt;C-B&gt;默认底线命令模式都需要回车&lt;return&gt;,例如:wq需要执行:wq&lt;return&gt;</p>
+<p>一 基本操作</p>
+<p>1. 插入- i 在光标后插入- o 在当前行后插入一个新行.- O 在当前行前插入一个新行.- cw 删除当前光标位置后到单词结尾的字符.</p>
+<p>2. 简单移动光标- 0 数字0,到行首.- ^ 当前行非空字符处.- $ 行尾.- g_ 当前行最后一个非空字符处.- /pattern 搜索pattern字符串(按n到下一个).</p>
+<ul><li>fa 下一个为a到字符处.</li><li>Fa 与f的方向相反.</li><li>3fa 当前光标后第三个出现的a.</li></ul>
+<ul><li>t( 到括号前到第一个字符((可修改为其他字符).</li><li>T 与t的方向相反.</li><li>dt&#34; 删除所以内容,直至遇到&#34;.</li></ul>
+<ul><li>NG 到第N行(:N也是同样效果).</li><li>gg 到第一行.</li><li>G 到最后一行.</li><li>:N 到第N行首.</li></ul>
+<ul><li>w 下一单词的开头.</li><li>e 下一单词到结尾.</li></ul>
+<ul><li>% 匹配括号移动(将光标移动到括号上).</li><li>*/# 匹配光标当前所在单词,移动光标到上一个或者下一个.</li></ul>
+<p>3. 粘贴复制- p/P p在当前位置之后粘贴,P在当前位置之前粘贴.- yy 拷贝当前行.- 0y$ 从行首拷贝到行尾- ye 从当前光标拷贝到本单词最后一个字符</p>
+<ul><li>u (undo)撤销操作.</li><li>&lt;C-r&gt; (redo)反撤销.</li><li>dd 删除当前行.</li><li>&#34;+y 复制到系统剪切板.</li><li>&#34;+p 从系统剪切板拷贝.</li></ul>
+<p>4. 打开保存退出- :e &lt;file path&gt; 打开一个文件.- :sp &lt;file path&gt; 创建一个分屏并打开一个文件(:split).- :vsp &lt;file path&gt; 创建一个垂直分屏并打开一个文件(:vsplit).- :x/ :wq/ ZZ 保存并退出.- :q! 强制退出且不保存.- :bn/:bp 同时打开多文件,打开上一个或下一个文件(:n也可打开下一个文件).</p>
+<ul><li>&lt;C-W&gt;&lt;dir&gt; dir就是方向(hjkl), 用来切换分屏.</li><li>&lt;C-W&gt;+/&lt;C-W&gt;- 增大或者缩小窗口.</li><li>&lt;C-W&gt;_ 最大化当前窗口.</li><li>&lt;C-W&gt;| 最大化垂直窗口.</li></ul>
+<p>5. 快捷操作- . 重复上次命令- N&lt;Command&gt; 重复某个命令多次.    - 2dd 删除两行    - 3p 粘贴3次</p>
+<p>查找- * 往后查找当前单词.- # 往前查找当前单词.</p>
+<p>6. 区域选择命令格式: &lt;action&gt;a&lt;object&gt;/&lt;action&gt;i&lt;object&gt;# &lt;action&gt;可以是任何命令,如:y,d,v.# &lt;object&gt; w:单词,W:以空格为分隔到单词. s:句子. p:段落. 或者),],},&#39;,&#34;.字符串(map (+) (&#34;foo&#34;)),光标位于第一个o.- vi&#34; → 会选择 foo.- va&#34; → 会选择 &#34;foo&#34;.- vi) → 会选择 &#34;foo&#34;.- va) → 会选择(&#34;foo&#34;).- v2i) → 会选择 map (+) (&#34;foo&#34;)- v2a) → 会选择 (map (+) (&#34;foo&#34;))</p>
+<p>7. 块操作&lt;C-V&gt;进入可视块(V-BLOCK)模式.- J 将所选的行连接为一行.- &lt;/&gt; 左右缩进.- = 自动给缩进.</p>
+<p>多行注释和插入(1)ESC进入命令行模式,0光标跳转到行头.(2)&lt;C-V&gt;进入可视块模式.(3)选择需要插入的行(j/k).(4)输入大写&#34;I&#34;,输入需要插入的内容(注释为&#34;#&#34;).(5)按ESC使所有到行生效.</p>
+<p>反注释和多行删除(1)&lt;C-V&gt;进入可视块选择模式.(2)选择要删除的行(j/k),要删除的字符(h/l).(3)按&#34;d&#34;删除</p>
+<p>7. 自动补全在Insert模式下, 按&lt;C-p&gt;或&lt;C-n&gt;自动补全.</p>
+<p>8. 编辑远程文件Vim 内置的插件 netrw 支持对远程文件的编辑。它的原理是将远程的文件通过 scp 复制到本地的临时文件中，再用这个文件打开一个缓冲区，然后在保存时再将文件复制回远程位置。以下命令列举在本地打开 SSH 远程服务器上文件的方式：:e scp://user@remotehost/.vimrc</p>
+<p>:e scp://user@remotehost/~/.vimrc</p>
+<p>:e scp://user@remotehost//etc/passwd</p>
+<p>也可以配置 ~/.ssh/config 文件，使得命令更加简单，如 ~/.ssh/config 存在如下配置：</p>
+<p>Host test    HostName test.site.com    Port 23456    User test</p>
+<p>那么编辑文件的命令就可以变得很简单：:e scp://test/.vimrc</p>
+<p>二 高级设置</p>
+<p>9. 文件类型识别Vim可针对特定的文件，加载指定插件。以此来实现文件类型的特殊配置以及语法高亮。</p>
+<p>首先要在 vimrc 中通过 filetype on 开启文件类型识别，Vim 会在载入时做如下工作：</p>
+<p>执行$RUNTIMEPATH/filetype.vim，尝试得到 filetype。如果没有得到 filetype，继续执行 $RUNTIMEPATH/scripts.vim比如我们可以在 ~/.vim/filetype.vim 中进行 filetype：&#34; 在读取和创建 *.cpp 时设置 filetype 为 cpp&#34;au BufRead,BufNewFile *.cpp setfiletype cpp</p>
+<p>调试时我们可以手动设置 :set filetype=cpp。 RUNTIMEPATH 变量可通过 :set rtp 打印出来. 详细参考详见:help filetype.</p>
+<p>10. 终端vim 8.1 引入了终端功能. 即能在 vim 中划分出一个命令行窗口, 十分方便运行命令.</p>
+<p>将当期窗口划分为两个窗口, above 表示终端在上面的窗口, below 表示终端在下面的窗口.- :above term- :below term</p>
+<p>将当期终端窗口放在最上面或者最下面.- :bot term- :top term</p>
+<p>打开一个终端后, 默认是插入模式, 可以输入命令并执行.</p>
+<p>如果要进入 normal 模式, 输入 &lt;c-\&gt; &lt;c-n&gt;.</p>
+<p>要进入插入模式, 直接按下 i 即可.</p>
+<p>打开光标的文件:假如说你有一个文件demo.txt, 把光标放在当前字符串demo.txt中, 按下gf在当前窗口打开该文件.当你想跳回原文件时, 输入&lt;C-^&gt;或者:b </p>
+<p>11. 键盘映射Vim支持定义键盘映射来完成快捷键的功能，也就是将特定的按键映射为一系列按键与函数的序列。</p>
+<p>例如将 F7 映射为编译当前 java 文件：</p>
+<p>map &lt;F7&gt; &lt;Esc&gt;:!javac %&lt;&lt;CR&gt;</p>
+<p>map模式	描述 n  	普通 v  	可视和选择 s  	选择 x  	可视 o  	操作符等待 !  	插入和命令行 i  	插入 l  	插入、命令行和 Lang-Arg 模式的 “:lmap” 映射 c  	命令行</p>
+<p>: 为进入Ex模式，! 指定下面的命令在vim外执行，% 为当前文件名，%&lt; 为不带扩展名的当前文件名.</p>
+<p>此外还可添加nore指定非递归方式(取消传递性). 例如 inoremap 为插入模式下工作的map,并且它的值不会被递归映射.</p>
+<p>10. VIM函数现在我们可以自定义快捷键了，如果希望在键盘映射中执行更复杂的功能，我们需要定义Vim函数。</p>
+<p>函数名必须以大写字母开始函数可以有返回值：return something函数可以有范围前缀。定义：function s:Save()，调用：call s:Save()下面是函数调用的例子，按键F8时，进入拷贝模式（取消行号，鼠标进入visual模式）</p>
+<p>&#34; key mappingmap &lt;F8&gt; &lt;Esc&gt;:call ToggleCopy()&lt;CR&gt;</p>
+<p>&#34; global variablelet g:copymode=0</p>
+<p>&#34; functionfunction ToggleCopy()    if g:copymode        set number        set mouse=a    else        set nonumber        set mouse=v    endif    let g:copymode=!g:copymodeendfunction</p>
+<p>插件:&#34; 注释插件Plug &#39;scrooloose/nerdcommenter&#39;  \cc\cu</p>
+<p>VIM官方教程:help tutor.</p>
+
+    <script src="../pigger/js/prism.js"></script>
+  </div>
+  </body>
+</html>
+
