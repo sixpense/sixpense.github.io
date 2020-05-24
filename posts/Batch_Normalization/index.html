@@ -3,23 +3,25 @@
   <head>
   <meta charset="UTF-8">
   <title>Batch Normalization</title>
-  <link href="./css/prism.css" rel="stylesheet" />
-  <link href="./css/normalize.css" rel="stylesheet" />
-  <link href="./css/pigger.css" rel="stylesheet" />
+  <link href="../pigger/css/prism.css" rel="stylesheet" />
+  <link href="../pigger/css/normalize.css" rel="stylesheet" />
+  <link href="../pigger/css/pigger.css" rel="stylesheet" />
   </head>
   <body>
   <div style="padding:1% 5% 1% 5%">
     <section style="padding-top: 20px; padding-bottom: 5px; color: #fff; text-align: center; background-image: linear-gradient(120deg, #224a73, #0d4027);">
       <div id = "headtitle"> Batch Normalization </div>
       <div id = "headinfo"> by sixpense </div>
-      <div id = "lastupdate"> Publish → 2020-05-21 Update → 2020-05-21</div>
+      <div id = "lastupdate"> Publish → 2020-05-21 Update → 2020-05-24</div>
     </section>
     
 <h1> Batch Normalization原理</h1>
 <h2> 1. 炼丹的困扰</h2>
 <p>在深度学习中, 我们往往会使用较深的层数的网络进行学习, 在这个过程中, 不同的的学习率的参数方法, 可以帮助我们的模型加速收敛. 深度神经网络之所以如此难收敛, 很大一个原因就是网络层与层中存在高度的相关性和耦合性.</p>
+<p>随着训练的进行, 网络中的参数也随着梯度下降在不停更新. 一方面, 当底层网络中参数发生微弱变化时, 由于每一层中的线性变换与非线性激活映射, 这些微弱变化随着网络层数的加深而被放大(类似蝴蝶效应), 另一方面, 参数的变化导致每一层的输入分布会发生改变, 进而上层的网络需要不停地去适应这些分布变化, 使得我们的模型训练变得困难. 上述这一现象叫做Internal Covariate Shift.</p>
+<p>图片插入<img src="images/book-reading.jpg"/></p>
 
-    <script src="./js/prism.js"></script>
+    <script src="../pigger/js/prism.js"></script>
   </div>
   </body>
 </html>
