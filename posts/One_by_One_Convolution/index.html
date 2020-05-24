@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title>1*1卷积核作用</title>
+  <link href="./css/prism.css" rel="stylesheet" />
+  <link href="./css/normalize.css" rel="stylesheet" />
+  <link href="./css/pigger.css" rel="stylesheet" />
+  </head>
+  <body>
+  <div style="padding:1% 5% 1% 5%">
+    <section style="padding-top: 20px; padding-bottom: 5px; color: #fff; text-align: center; background-image: linear-gradient(120deg, #224a73, #0d4027);">
+      <div id = "headtitle"> 1*1卷积核作用 </div>
+      <div id = "headinfo"> by sixpence </div>
+      <div id = "lastupdate"> Publish → 2020-05-23 Update → 2020-05-24</div>
+    </section>
+    
+<h1> 1*1卷积核的作用</h1>
+<h2>一. 来源
+如果1*1卷积接在普通的后面, 配合激活函数, 可以实现network in network的结构.
+@[https://arxiv.org/abs/1312.4400]</h2>
+<h2>二. 应用
+GoogleNet中的inceptions, ResNet的残差模块.</h2>
+<h2>三. 作用</h2>
+<h3> 1. 降维</h3>
+<p><img src="images/convolution.jpg"/></p>
+<p>输入的feature map是28*28*192,1*1卷积通道为64,3*3卷积通道为128,5*5卷积通道为32,左图卷积核参数：192 * (1*1*64) +192 * (3*3*128) + 192 * (5*5*32) = 387072,右图对3*3和5*5卷积层前分别加入了通道数为96和16的1*1卷积层，这样卷积核参数就变成了: 192 * (1*1*64) +（192*1*1*96+ 96 * 3*3*128）+（192*1*1*16+16*5*5*32）= 157184,同时在并行pooling层后面加入1*1卷积层后也可以降低输出的feature map数量.(feature map尺寸指W、H是共享权值的sliding window，feature map 的数量就是channels).左图feature map数量：64 + 128 + 32 + 192(pooling后feature map不变) = 416.(如果每个模块都这样，网络的输出会越来越大)右图feature map数量：64 + 128 + 32 + 32(pooling后面加了通道为32的1*1卷积) = 256</p>
+<h3> 2. ResNet中的残差模块</h3>
+<p><img src="images/resnet.jpg"/></p>
+<p>假设上一层的feature map是W*H*256, 输出的是256个feature map.</p>
+<p>左侧的操作树: W*H*256*3*3*256 = 589824*W*H;</p>
+<p>右侧的操作树: W*H*256*1*1*64 + W*H*64*3*3*64 + W*H*64*1*1*256 = 69632*W*H;</p>
+<p>左侧参数大概是右侧的8.5倍.</p>
+<h3> 3. 升维
+在输出核有一个1*1卷积核, 将网络channel提升.</h3>
+<h3> 4. 跨通道信息交互
+使用1*1卷积核, 实现升维和降维其实是channel间信息的线性组合变化, 也就是通道间的
+信息交互.</h3>
+<h3> 5. 增加非线性特征
+1*1卷积核, 可以在保持geature map尺度不变的前提下, 利用后接的非线性激活函数,增
+加非线性特征.</h3>
+<p>备注: 从fully-connected layers的角度来理解1*1卷积核, 可以将其看成全连接层.</p>
+
+    <script src="./js/prism.js"></script>
+  </div>
+  </body>
+</html>
+
