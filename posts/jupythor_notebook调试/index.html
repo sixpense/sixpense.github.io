@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title>Jupythor_Notebook调试</title>
+  <link href="./css/prism.css" rel="stylesheet" />
+  <link href="./css/normalize.css" rel="stylesheet" />
+  <link href="./css/pigger.css" rel="stylesheet" />
+  </head>
+  <body>
+  <div style="padding:1% 5% 1% 5%">
+    <section style="padding-top: 20px; padding-bottom: 5px; color: #fff; text-align: center; background-image: linear-gradient(120deg, #224a73, #0d4027);">
+      <div id = "headtitle"> Jupythor_Notebook调试 </div>
+      <div id = "headinfo"> by sixpense </div>
+      <div id = "lastupdate"> Publish → 2020-06-31 Update → 2020-06-02</div>
+    </section>
+    
+<h1> Jupythor_Notebook调试</h1>
+<p>jupyter的调试是通过python自带的pdb库来实现的。</p>
+<h2> 如何在notebook中如何进行调试?</h2>
+<p>1.首先需要import pdb</p>
+<p>2.然后在import后写入语句：</p>
+<ul><li>pdb.set_trace()</li></ul>
+<p>这个的作用是输入调试器。</p>
+<p>示例：</p>
+<p>打开notebook并新建一个执行文件，并输入以下代码：</p>
+<p>import pdbpdb.set_trace()def sum(a,b):    c=a+b    return ca=1b=2c=sum(a,b)print (c)</p>
+<p>按cntrl+enter运行。</p>
+<p>会出现pdb调试界面：</p>
+<p><img src="images/notebook1.jpeg"/></p>
+<p>断点：</p>
+<p>输入：b 6</p>
+<p><img src="images/notebook2.jpeg"/></p>
+<p>即在第6行打入断点。</p>
+<p>再次输入:b 8，在第8行打入断点。</p>
+<p>在打入断点后输入b可以查看当前程序的断点状态。</p>
+<p><img src="images/notebook3.jpeg"/></p>
+<p>Num为断点的序号，Where为断点的位置。</p>
+<p>输入c后程序会继续执行直到结束或遇到下一个断点。</p>
+<h2> 附录</h2>
+<p>调试命令:</p>
+<p>完整命令   简写命令   描述</p>
+<p>args      a      打印当前函数的参数</p>
+<p>break     b      设置断点</p>
+<p>clear     cl     清除断点</p>
+<p>condition 无     设置条件断点</p>
+<p>continue  c或者cont  继续运行，知道遇到断点或者脚本结束</p>
+<p>disable   无     禁用断点</p>
+<p>enable    无     启用断点</p>
+<p>help      h      查看pdb帮助</p>
+<p>ignore    无     忽略断点</p>
+<p>jump      j      跳转到指定行数运行</p>
+<p>list      l      列出脚本清单</p>
+<p>next      n      执行下条语句，遇到函数不进入其内部</p>
+<p>p         p      打印变量值，也可以用print</p>
+<p>quit      q      退出 pdb</p>
+<p>return    r      一直运行到函数返回</p>
+<p>tbreak    无     设置临时断点，断点只中断一次</p>
+<p>step      s      执行下一条语句，遇到函数进入其内部</p>
+<p>where     w      查看所在的位置</p>
+<p>!         无     在pdb中执行语句</p>
+
+    <script src="./js/prism.js"></script>
+  </div>
+  </body>
+</html>
+
